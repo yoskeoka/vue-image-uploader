@@ -1,0 +1,24 @@
+{
+  "name": "vue-image-uploader",
+  "version": "1.0.0",
+  "description": "「Vue.js + Go言語 + Docker」で作る！画像アップロード機能実装ハンズオン",
+  "main": "index.js",
+  "dependencies": {
+    "@vue/cli": "3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "vue": "vue",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoskeoka/vue-image-uploader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yoskeoka/vue-image-uploader/issues"
+  },
+  "homepage": "https://github.com/yoskeoka/vue-image-uploader#readme"
+}
