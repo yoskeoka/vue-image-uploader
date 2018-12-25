@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <vue-dropzone
-      ref="myvueDropzone"
+      ref="myVueDropzone"
       id="dropzone"
       :options="dropzoneOptions"
       v-on:vdropzone-sending="sendingEvent"
@@ -42,6 +42,19 @@ export default {
           console.error(err);
         });
     }
+  },
+  mounted(){
+    axios.get("http://localhost:8888/images").then(res => {
+      res.data.forEach(res => {
+        const filename = res.path.split("/").pop();
+        const ext = filename.split(".").pop();
+        let uuid = filename === ext ? filename : filename.replace("."+ext, "");
+        const file = {size: res.size, name: filename, type: `image/${ext}`, upload: {uuid}}
+        this.$refs.myVueDropzone.manuallyAddFile(file, res.path);
+      })
+    }).catch(err => {
+      console.error(err);
+    })
   }
 };
 </script>

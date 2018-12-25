@@ -5,14 +5,15 @@ import (
 	"server/handler"
 
 	"github.com/gin-contrib/cors"
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
+	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"message": "ping",
+			"message": "pong",
 		})
 	})
 
@@ -22,6 +23,8 @@ func main() {
 		AllowHeaders: []string{"*"},
 	}))
 
+	r.Use(static.Serve("/files", static.LocalFile("./images", true)))
+	r.GET("/images", handler.List)
 	r.POST("/images", handler.Upload)
 	r.DELETE("/images/:uuid", handler.Delete)
 	r.Run(":8888")
