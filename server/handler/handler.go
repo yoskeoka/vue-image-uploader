@@ -61,9 +61,10 @@ func dirwalk(dir string) (files []File, err error) {
 		if info.IsDir() {
 			return nil
 		}
-		if strings.Contains(info.Name(), "DS_Store") {
+		if filepath.Ext(info.Name()) == info.Name() {
 			return nil
 		}
+
 		path = strings.Replace(path, "images/", "http://localhost:8888/files/", 1)
 		size := info.Size()
 		f := File{Path: path, Size: size}
